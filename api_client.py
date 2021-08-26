@@ -1,4 +1,5 @@
-from typing import Union
+from dataclasses import dataclass
+from typing import Union, Set
 
 import requests
 
@@ -24,6 +25,17 @@ class DRInvitationAPI:
 
     def remove(self, name : str) -> None:
         print(f'Not really removing {name}')
+
+
+@dataclass
+class FakeInvitationAPI:
+    guests: Set[str]
+
+    def add(self, name: str) -> None:
+        self.guests.add(name)
+
+    def remove(self, name: str) -> None:
+        self.guests.remove(name)
 
 
 def main(api_client: Union[InvitationAPI, DRInvitationAPI]) -> None:
