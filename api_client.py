@@ -1,7 +1,15 @@
 from dataclasses import dataclass
-from typing import Union, Set
+from typing import Set, Protocol
 
 import requests
+
+
+class APIInterface(Protocol):
+    def add(self, name: str) -> None:
+        ...
+
+    def remove(self, name: str) -> None:
+        ...
 
 
 class InvitationAPI:
@@ -38,13 +46,13 @@ class FakeInvitationAPI:
         self.guests.remove(name)
 
 
-def main(api_client: Union[InvitationAPI, DRInvitationAPI]) -> None:
+def main(api_client: APIInterface) -> None:
     api_client.add('Mary Antoinette')
     api_client.add('North West')
     api_client.remove('Salieri')
 
 
-def api_factory(dry_run: bool = False) -> Union[InvitationAPI, DRInvitationAPI]:
+def api_factory(dry_run: bool = False) -> APIInterface:
     if dry_run:
         return DRInvitationAPI()
     return InvitationAPI()
