@@ -32,6 +32,13 @@ def main(api_client: Union[InvitationAPI, DRInvitationAPI]) -> None:
     api_client.remove('Salieri')
 
 
+def api_factory(dry_run: bool = False) -> Union[InvitationAPI, DRInvitationAPI]:
+    if dry_run:
+        return DRInvitationAPI()
+    return InvitationAPI()
+
+
 if __name__ == '__main__':
-    api = DRInvitationAPI()
+    dry_run = False
+    api = api_factory(dry_run)
     main(api)
