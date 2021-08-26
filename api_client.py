@@ -16,6 +16,14 @@ class InvitationAPI:
         return requests.Response()
 
 
+class DRInvitationAPI:
+    def add(self, name: str) -> None:
+        print(f'Not really adding {name}')
+
+    def remove(self, name : str) -> None:
+        print(f'Not really removing {name}')
+
+
 def main(api_client: InvitationAPI) -> None:
     api_client.add('Mary Antoinette')
     api_client.add('North West')
@@ -23,5 +31,5 @@ def main(api_client: InvitationAPI) -> None:
 
 
 if __name__ == '__main__':
-    api = InvitationAPI()
+    api = DRInvitationAPI()
     main(api)
