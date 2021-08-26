@@ -1,3 +1,5 @@
+from typing import Union
+
 import requests
 
 
@@ -24,7 +26,7 @@ class DRInvitationAPI:
         print(f'Not really removing {name}')
 
 
-def main(api_client: InvitationAPI) -> None:
+def main(api_client: Union[InvitationAPI, DRInvitationAPI]) -> None:
     api_client.add('Mary Antoinette')
     api_client.add('North West')
     api_client.remove('Salieri')
